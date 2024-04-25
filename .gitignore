@@ -1,0 +1,3 @@
+.terraform*
+terra_plan
+terraform.tfvars
