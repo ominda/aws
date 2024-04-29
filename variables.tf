@@ -23,3 +23,12 @@ variable "v_identifier" {
 variable "v_primary_cidr_block" {
   type = string
 }
+
+# Public subnets
+variable "v_public_subnets" {
+  type = list(string)
+}
+
+variable "v_private_subnets" {
+  type = list(string)
+}
