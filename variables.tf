@@ -32,3 +32,16 @@ variable "v_public_subnets" {
 variable "v_private_subnets" {
   type = list(string)
 }
+
+# EC2 variables
+# variable "v_public_accessible_server_count" {
+#   type = number  
+# }
+
+variable "v_ssh_key_pair" {
+  type = string  
+}
+
+variable "v_private_ec2_instance_count" {
+  type = number
+}

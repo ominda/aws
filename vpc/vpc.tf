@@ -92,3 +92,18 @@ resource "aws_route_table" "r_private_route_table" {
     Name = "${local.base_name}_private_rbt"
   }
 }
+
+# Subnet, Route table association
+resource "aws_route_table_association" "r_Public_subnet_association" {
+  # for_each = aws_subnet.r_public_subnets : subnet.id => aws_subnet.r_public_subnets[subnet.id].cidr_block
+  count = "${length(var.public_subnets)}"
+  # subnet_id      = aws_subnet.r_public_subnets[*].id
+  route_table_id = aws_route_table.r_public_route_table.id
+  subnet_id     = "${element(aws_subnet.r_public_subnets.*.id, count.index)}"
+}
+
+resource "aws_route_table_association" "r_private_subnet_association" {
+  count = length(var.private_subnets)
+  subnet_id      = element(aws_subnet.r_private_subnets.*.id, count.index)
+  route_table_id = aws_route_table.r_private_route_table.id
+}

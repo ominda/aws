@@ -6,3 +6,16 @@ module "vpc" {
   public_subnets  = var.v_public_subnets
   private_subnets = var.v_private_subnets
 }
+
+module "ec2" {
+  source = "./ec2"
+  project         = var.v_project
+  env             = var.v_environment
+  # server_count = var.v_public_accessible_server_count
+  ssh_key = var.v_ssh_key_pair
+  public_subnets = module.vpc.o_public_subnets
+  private_subnets = module.vpc.o_private_subnets
+  vpc_id = module.vpc.o_vpc.id
+  ec2_instance_count = var.v_private_ec2_instance_count
+
+}
