@@ -18,9 +18,9 @@
 
 - Deploy Kubernetes cluster
     - Using kubeadm, deploy Kubernetes cluster
-        - kubeadm init --ignore-preflight-errors=Mem (use the ignore flag, if you use less memory servers than recomended. As **root** user)
+        - ***kubeadm init --ignore-preflight-errors=Mem*** (use the ignore flag, if you use less memory servers than recomended. As **root** user)
     - Join Worker nodes to the cluster
-        - Execute this command on control plane *kubeadm token create --print-join-command*
+        - Execute this command on control plane ***kubeadm token create --print-join-command***
         - Execute output of above command on worker nodes as **root** user
     - Test the cluster
-        - Execute this command in control plane *kubectl run mypod --image busybox -l tire=frontend,env=dev -- sleep 1000*
+        - Execute this command in control plane ***kubectl run mypod --image busybox -l tire=frontend,env=dev -- sleep 1000***
