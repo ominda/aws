@@ -16,6 +16,6 @@ module "ec2" {
   public_subnets = module.vpc.o_public_subnets
   private_subnets = module.vpc.o_private_subnets
   vpc_id = module.vpc.o_vpc.id
-  ec2_instance_count = var.v_private_ec2_instance_count
-
+  worker_node_count = var.v_worker_node_count
+  master_node_count = var.v_master_node_count
 }

@@ -42,6 +42,10 @@ variable "v_ssh_key_pair" {
   type = string  
 }
 
-variable "v_private_ec2_instance_count" {
+variable "v_worker_node_count" {
+  type = number
+}
+
+variable "v_master_node_count" {
   type = number
 }

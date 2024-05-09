@@ -4,5 +4,6 @@ variable "env" {}
 variable "ssh_key" {}
 variable "public_subnets" {}
 variable "private_subnets" {}
-variable "ec2_instance_count" {}
+variable "worker_node_count" {}
+variable "master_node_count" {}
 variable "vpc_id" {}
