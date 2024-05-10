@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: webapp
+spec: {}
+status: {}
+
+---
+apiVersion: v1
+data:
+  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOiB7CgkJCSJhdXRoIjogImMyRnVaR0Z5ZFhkaGJuSTZSRzlqYTJWeU1UQXhJdz09IgoJCX0KCX0KfQ==
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: regcred
+  namespace: webapp
+type: kubernetes.io/dockerconfigjson
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webapp-deploy
+  name: webapp-deploy
+  namespace: webapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webapp-app
+      env: dev
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: webapp-app
+        env: dev
+    spec:
+      containers:
+      - image: docker.io/sandaruwanr/project_moon:latest
+        name: project-moon-n2jmp
+        resources: {}
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webapp-svc
+  name: webapp-svc
+  namespace: webapp
+spec:
+  ports:
+  - name: webapp-svc
+    port: 80
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: webapp-app
+    env: dev
+  type: ClusterIP
+status:
+  loadBalancer: {}

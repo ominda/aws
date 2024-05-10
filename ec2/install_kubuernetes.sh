@@ -48,7 +48,7 @@ echo \
 # Install containerd
 
 apt-get update -y
-apt-get install containerd.io -y
+apt-get install containerd.io podman-docker -y
 
 # Generate default configuration file for containerd
 
