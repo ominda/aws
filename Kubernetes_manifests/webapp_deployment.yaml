@@ -41,7 +41,7 @@ spec:
         env: dev
     spec:
       containers:
-      - image: docker.io/sandaruwanr/project_moon:latest
+      - image: docker.io/sandaruwanr/k8s_simple_web:v1.00
         name: project-moon-n2jmp
         resources: {}
 status: {}
@@ -58,12 +58,12 @@ metadata:
 spec:
   ports:
   - name: webapp-svc
-    port: 80
+    port: 8080
     protocol: TCP
-    targetPort: 5000
+    targetPort: 80
   selector:
     app: webapp-app
     env: dev
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}
