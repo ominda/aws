@@ -48,6 +48,7 @@ resource "aws_security_group" "r_worker_node_sg" {
     from_port = 443
     to_port = 443
     protocol = "TCP"
+    # cidr_blocks = [ "0.0.0.0/0" ]
     security_groups = [aws_security_group.r_public_default_sg.id]
   }
 
@@ -97,6 +98,7 @@ resource "aws_security_group" "r_master_node_sg" {
     from_port = 443
     to_port = 443
     protocol = "TCP"
+    # cidr_blocks = [ "0.0.0.0/0" ]
     security_groups = [aws_security_group.r_public_default_sg.id]
   }
 
