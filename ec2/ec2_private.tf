@@ -1,8 +1,3 @@
-# Construct local variables
-locals {
-  private_subnets = var.private_subnets
-}
-
 # Worker Nodes
 resource "aws_instance" "r_worker_nodes" {
     count = var.worker_node_count
@@ -12,7 +7,8 @@ resource "aws_instance" "r_worker_nodes" {
   key_name = var.ssh_key  
   subnet_id = local.private_subnets[0].id
   vpc_security_group_ids = [aws_security_group.r_worker_node_sg.id]
-  user_data_base64 = base64encode(file("${path.module}/scripts/install_kubuernetes.sh"))
+  iam_instance_profile = aws_iam_instance_profile.r_iam_instance_profile.name
+  user_data_base64 = base64encode(file("${path.module}/scripts/install_kubernetes.sh"))
   user_data_replace_on_change = true
   
 
@@ -30,7 +26,8 @@ resource "aws_instance" "r_master_nodes" {
   key_name = var.ssh_key  
   subnet_id = local.private_subnets[1].id
   vpc_security_group_ids = [aws_security_group.r_master_node_sg.id]
-  user_data_base64 = base64encode(file("${path.module}/scripts/install_kubuernetes.sh"))
+  iam_instance_profile = aws_iam_instance_profile.r_iam_instance_profile.name
+  user_data_base64 = base64encode(file("${path.module}/scripts/install_kubernetes.sh"))
   user_data_replace_on_change = true
   
   tags = {
@@ -48,8 +45,8 @@ resource "aws_security_group" "r_worker_node_sg" {
     from_port = 443
     to_port = 443
     protocol = "TCP"
-    # cidr_blocks = [ "0.0.0.0/0" ]
-    security_groups = [aws_security_group.r_public_default_sg.id]
+    cidr_blocks = [ "0.0.0.0/0" ]
+    # security_groups = [aws_security_group.r_public_default_sg.id]
   }
 
     ingress  {
@@ -98,8 +95,8 @@ resource "aws_security_group" "r_master_node_sg" {
     from_port = 443
     to_port = 443
     protocol = "TCP"
-    # cidr_blocks = [ "0.0.0.0/0" ]
-    security_groups = [aws_security_group.r_public_default_sg.id]
+    cidr_blocks = [ "0.0.0.0/0" ]
+    # security_groups = [aws_security_group.r_public_default_sg.id]
   }
 
     ingress  {

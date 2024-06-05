@@ -49,3 +49,7 @@ variable "v_worker_node_count" {
 variable "v_master_node_count" {
   type = number
 }
+
+variable "v_public_ec2_count" {
+  type = number  
+}

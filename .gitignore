@@ -3,3 +3,4 @@ terra_plan
 terraform.tfvars
 *.tfstate
 terraform.tfstate.*
+*.pem

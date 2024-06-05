@@ -18,4 +18,5 @@ module "ec2" {
   vpc_id = module.vpc.o_vpc.id
   worker_node_count = var.v_worker_node_count
   master_node_count = var.v_master_node_count
+  public_ec2_count = var.v_public_ec2_count
 }

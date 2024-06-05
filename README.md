@@ -30,11 +30,11 @@
     - Execute this command to deploy sample web application ***kubectl apply -f test_webapp-deployment.yaml***
         - 'test_webapp-deployment.yaml' can be found at the 'Kubernetes_manifests' folder
     - Deploy nginx pod and test the connectivity
-        - ***kubectl run mytestpod --image nginx***
+        - ***kubectl run mytestpod --image nginx -n webapp***
         - ***kubectl exec -n webapp mytestpod -- curl <IP of Service 'webapp-svc'>:8080***
 
 - Ingress
-    - Install helm
+    - Install helm #### >> Automated << ####
         - *wget https://get.helm.sh/helm-v3.15.1-linux-amd64.tar.gz*
         - *tar zxvf helm-v3.15.1-linux-amd64.tar.gz*
         - *sudo cp linux-amd64/helm /usr/local/bin/*

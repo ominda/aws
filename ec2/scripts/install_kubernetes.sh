@@ -95,3 +95,14 @@ apt-mark hold kubelet kubeadm kubectl
 systemctl daemon-reload
 systemctl start kubelet
 systemctl enable --now kubelet
+
+echo "source <(kubectl completion bash)" >> /home/ubuntu/.bashrc
+echo "alias k=kubectl" >> /home/ubuntu/.bashrc
+echo "complete -o default -F __start_kubectl k" >> /home/ubuntu/.bashrc
+
+# Get and configure Helm
+wget https://get.helm.sh/helm-v3.15.1-linux-amd64.tar.gz -O /tmp/helm-v3.15.1-linux-amd64.tar.gz
+tar zxvf /tmp/helm-v3.15.1-linux-amd64.tar.gz -C /tmp/
+sudo cp /tmp/linux-amd64/helm /usr/local/bin/
+
+echo "alias h=helm" >> /home/ubuntu/.bashrc
